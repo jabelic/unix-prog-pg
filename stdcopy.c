@@ -1,4 +1,7 @@
-#include "./apue.3e/include/apue.h"
+// #include "./apue.3e/include/apue.h"
+#include <unistd.h>
+#include <stdio.h>
+
 // #include "apue.h"
 
 #define BUFFSIZE 4096
@@ -10,11 +13,15 @@ int main(void){
 
     while((n=read(STDIN_FILENO, buf, BUFFSIZE)) > 0){
         if (write(STDOUT_FILENO, buf, n) != n){
-            err_sys("write error");
+            // err_sys("write error");
+            fprintf(stdout, "write error");
+            exit(1);
         }
     }
     if (n < 0){
-        err_sys("read error");
+        // err_sys("read error");
+        fprintf(stdout, "read error");
+        exit(1);
     }
     exit(0);
 }
